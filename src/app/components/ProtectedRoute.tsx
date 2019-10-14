@@ -1,12 +1,11 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
 export const ProtectedRoute = ({
   component: Component,
   layout: Layout,
-  sidebar: Sidebar,
   pageName,
-  isLoggedIn,
+  // isLoggedIn,
   ...props
 }) => {
   return (
