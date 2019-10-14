@@ -94,3 +94,12 @@
 //     </Router>
 //   );
 // }
+import React from 'react';
+
+export const Sidebar = () => {
+  return (
+    <div className="navbar">
+      <h1>Hello</h1>
+    </div>
+  );
+};
