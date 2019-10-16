@@ -1,10 +1,11 @@
 import React from 'react';
-import { BrowserRouter, Switch, Redirect, Route } from 'react-router-dom';
+import { BrowserRouter, Switch, Redirect, Route, Link } from 'react-router-dom';
 
 import { ProtectedRoute } from '../components/ProtectedRoute';
 import { NavbarFooterAdmin } from '../layouts/NavbarFooterAdmin';
 import { Dashboard } from '../views/admin-views/Dashboard';
 import Invoices from '../containers/Invoices';
+
 
 export const ROUTES = {
   DASHBOARD: '/admin/dashboard',
@@ -13,18 +14,32 @@ export const ROUTES = {
 
 export const AdminLayout = props => {
   return (
-    <BrowserRouter>
+    <div
+      style={{
+        background: '#f0f0f0',
+        display: 'flex'
+      }}
+    >
+      <div className="sidebar">
+        <Link to="/admin/dashboard">dashboard</Link>
+        <Link to="/admin/invoices">invoices</Link>
+      </div>
       <Switch>
         <ProtectedRoute
           // exact
           path={ROUTES.DASHBOARD}
-          pageName="Dashboard"
+          pageName="Login"
           component={Dashboard}
           layout={NavbarFooterAdmin}
         />
-        <Route></Route>
-        <Redirect from="/admin" to="/admin/dashboard" />
+        <ProtectedRoute
+          // exact
+          path={ROUTES.INVOICES}
+          pageName="SignUp"
+          component={Invoices}
+          layout={NavbarFooterAdmin}
+        />
       </Switch>
-    </BrowserRouter>
+    </div>
   );
 };

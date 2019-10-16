@@ -12,24 +12,24 @@ export const ROUTES = {
   AUTH: '/'
 };
 
-const AppRoutes = props => (
-  <BrowserRouter>
-    <Switch>
-      {/* <Route path="/admin" render={props => <AdminLayout {...props} />} /> */}
-      {/* <ProtectedRoute
-            // exact
-            path={ROUTES.AUTH}
-            pageName="Login"
-            component={AdminLayout}
-            layout={NavbarFooterAuth}
-          /> */}
-      <Route path="/admin" render={props => <AdminLayout {...props} />} />
-      <Route exact path="/login" render={props => <AuthLayout {...props} />} />
-      {/* <Route path="/auth" render={props => <p>AUTH</p>} /> */}
-      <Redirect from="/" to="/login" />
-      <Route path="*" pageName="Not Found" component={NotFound} />
-    </Switch>
-  </BrowserRouter>
-);
+// const AppRoutes = props => (
+//   // <BrowserRouter>
+//   //   <Switch>
+//   //     {/* <Route path="/admin" render={props => <AdminLayout {...props} />} /> */}
+//   //     {/* <ProtectedRoute
+//   //           // exact
+//   //           path={ROUTES.AUTH}
+//   //           pageName="Login"
+//   //           component={AdminLayout}
+//   //           layout={NavbarFooterAuth}
+//   //         /> */}
+//   //     <Route path="/admin" render={props => <AdminLayout {...props} />} />
+//   //     <Route exact path="/login" render={props => <AuthLayout {...props} />} />
+//   //     {/* <Route path="/auth" render={props => <p>AUTH</p>} /> */}
+//   //     <Redirect from="/" to="/login" />
+//   //     <Route path="*" pageName="Not Found" component={NotFound} />
+//   //   </Switch>
+//   // </BrowserRouter>
+// );
 
-export default AppRoutes;
+// export default AppRoutes;

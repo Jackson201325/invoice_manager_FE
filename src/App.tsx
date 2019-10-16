@@ -1,40 +1,25 @@
 import React from 'react';
-import AppRoutes from './app/routes';
-// import { connect } from 'react-redux';
-// import { loadAuth } from './Admin/redux/Authentication/actions';
-// import Toast from './components/Toast';
-// interface IProps {
-//   isAuthenticationLoaded: boolean;
-//   loadAuth: Function;
-// }
+import { Route, BrowserRouter, Switch, Redirect, Link } from 'react-router-dom';
+import { AdminLayout } from './app/layouts/AdminLayout';
+import { AuthLayout } from './app/layouts/AuthLayout';
+import { NotFound } from './app/views/auth-views/NotFound';
+import { AuthLogin } from './app/views/auth-views/AuthLogin';
 
-// class App extends React.Component<IProps, {}> {
 class App extends React.Component {
   render() {
-    // if (!this.props.isAuthenticationLoaded) {
-    //   //TODO: create AppLoading
-    //   this.props.loadAuth();
-    //   return <p>loading</p>;
-    // }
-
     return (
-      // {/* <Toast /> */}
-      <AppRoutes />
-    );
+      <BrowserRouter>
+        <Switch>
+          <Route path="/admin" render={props => <AdminLayout {...props} />} />
+          <Route exact path="/login" render={props => <AuthLayout {...props} />} />
+          <Redirect from="/" to="/login" />
+          <Route path="*" pageName="Not Found" component={NotFound} />
+        </Switch>
+      </BrowserRouter>
+    )
   }
 }
-// const mapStateToProps = (state: {
-//   authentication: { isAuthenticationLoaded: boolean };
-// }) => ({
-//   isAuthenticationLoaded: state.authentication.isAuthenticationLoaded
-// });
 
-// const mapDispatchToProps = {
-//   loadAuth,
-// };
-// export default connect(
-//   mapStateToProps,
-//   mapDispatchToProps,
-// )(App);
 
 export default App;
+

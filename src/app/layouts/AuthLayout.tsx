@@ -19,24 +19,22 @@ export const AuthLayout = () => {
         background: '#f0f0f0'
       }}
     >
-      <BrowserRouter>
-        <Switch>
-          <ProtectedRoute
-            // exact
-            path={ROUTES.AUTH_LOGIN}
-            pageName="Login"
-            component={AuthLogin}
-            layout={NavbarFooterAuth}
-          />
-          <ProtectedRoute
-            // exact
-            path={ROUTES.SIGNUP}
-            pageName="SignUp"
-            component={SignUp}
-            layout={NavbarFooterAuth}
-          />
-        </Switch>
-      </BrowserRouter>
+      <Switch>
+        <ProtectedRoute
+          // exact
+          path={ROUTES.AUTH_LOGIN}
+          pageName="Login"
+          component={AuthLogin}
+          layout={NavbarFooterAuth}
+        />
+        <ProtectedRoute
+          // exact
+          path={ROUTES.SIGNUP}
+          pageName="SignUp"
+          component={SignUp}
+          layout={NavbarFooterAuth}
+        />
+      </Switch>
     </div>
   );
 };
