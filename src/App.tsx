@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, BrowserRouter, Switch, Redirect, Link } from 'react-router-dom';
+import { Route, BrowserRouter, Switch, Redirect } from 'react-router-dom';
 import { AdminLayout } from './app/layouts/AdminLayout';
 import { NotFound } from './app/views/NotFound';
 import { AuthLogin } from './app/views/auth-views/AuthLogin';

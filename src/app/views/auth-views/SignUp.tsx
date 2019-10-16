@@ -1,25 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { NavbarFooterAuth } from '../../layouts/NavbarFooterAuth';
-export const SignUp = () => {
+export const SignUp = props => {
   return (
     <NavbarFooterAuth>
+      <div className="signup">
+        {props.location.pathname}
 
-      <div className="Login">
-        <h1>Register</h1>
-        <ul>
-          <li>
-            <p>Username</p>
-          </li>
-          <li>
-            <p>Password</p>
-          </li>
-          <li>
-            <Link to="/login">Login</Link>
-          </li>
-        </ul>
+        <h1>Hello this is SignUp</h1>
+        <Link to="/login">Login</Link>
       </div>
     </NavbarFooterAuth>
-
   );
 };

@@ -13,7 +13,6 @@ export const ProtectedRoute = ({
       render={props => {
         return (
           <Layout>
-            <p>{props.location.pathname}</p>
             <Component {...props} />
           </Layout>
         );

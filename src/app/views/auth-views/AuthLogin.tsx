@@ -6,21 +6,10 @@ export const AuthLogin = props => {
   return (
     <NavbarFooterAuth>
       <div className="Login">
-        <h1>Login</h1>
-        <ul>
-          <li>
-            <p>Username: {props.location.pathname}</p>
-          </li>
-          <li>
-            <p>Password</p>
-          </li>
-          <li>
-            <Link to="/admin/dashboard">Dashboard</Link>
-          </li>
-          <li>
-            <Link to="/signup">Register</Link>
-          </li>
-        </ul>
+        {props.location.pathname}
+        <h1>Hello this is login</h1>
+        <Link to="/admin/dashboard">Dashboard</Link>
+        <Link to="/signup">Register</Link>
       </div>
     </NavbarFooterAuth>
   );

@@ -1,11 +1,12 @@
 import React from 'react';
-import { BrowserRouter, Switch, Redirect, Route, Link } from 'react-router-dom';
+import { Switch, Redirect, Route } from 'react-router-dom';
 
 import { ProtectedRoute } from '../components/ProtectedRoute';
 import { NavbarFooterAdmin } from '../layouts/NavbarFooterAdmin';
 import { Dashboard } from '../views/admin-views/Dashboard';
 import Invoices from '../containers/Invoices';
 import { NotFound } from '../views/NotFound';
+import { Sidebar } from './Sidebar';
 
 
 
@@ -22,10 +23,7 @@ export const AdminLayout = props => {
         display: 'flex'
       }}
     >
-      <div className="sidebar">
-        <Link to="/admin/dashboard">dashboard</Link>
-        <Link to="/admin/invoices">invoices</Link>
-      </div>
+      <Sidebar />
       <Switch>
         <ProtectedRoute
           exact
@@ -41,7 +39,7 @@ export const AdminLayout = props => {
           component={Invoices}
           layout={NavbarFooterAdmin}
         />
-        <Redirect from="/admin" to="/admin/dashboard" />
+        <Redirect from="/" to="/admin/dashboard" />
         <Route path="*" pageName="Not Found" component={NotFound} />
 
       </Switch>

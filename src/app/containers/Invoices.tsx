@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { Route, BrowserRouter, Switch, Redirect, Link } from 'react-router-dom';
-import Button from '@material-ui/core/Button';
+import { Link } from 'react-router-dom';
 
 interface IProps {
   location: any;
@@ -17,9 +16,6 @@ class Invoices extends Component<IProps, {}> {
       <div className="invoice">
         {this.props.location.pathname}
         <p>Hello this is Invoices</p>
-        {/* <Button variant="contained" onCick={() => this.redirectTo(this.props.location.pathname)}>
-          Default
-      </Button> */}
         <Link to="/login">Login</Link>
       </div>
     );
