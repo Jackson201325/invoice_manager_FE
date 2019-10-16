@@ -6,16 +6,16 @@ export const NotFound = () => {
       <h1>Not Found</h1>
       <ul>
         <li>
-          <p>Username</p>
+          <p>Not Found</p>
         </li>
         <li>
-          <p>Password</p>
+          <p>Not Found</p>
         </li>
         <li>
           <Link to="/login">Login</Link>
         </li>
         <li>
-          <Link to="/admin/dashboard">Register</Link>
+          <Link to="/admin/dashboard">Dashboard</Link>
         </li>
       </ul>
     </div>

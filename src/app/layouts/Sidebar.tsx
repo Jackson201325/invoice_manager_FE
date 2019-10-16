@@ -97,7 +97,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-export const Sidebar = () => {
+export const Sidebar = props => {
   return (
     <div
       style={{
@@ -107,9 +107,6 @@ export const Sidebar = () => {
       }}
     >
       <ul style={{ listStyleType: 'none', padding: 0 }}>
-        {/* <li>
-          <Link to="/auth/login">Login</Link>
-        </li> */}
         <li>
           <Link to="/invoices">Invoices</Link>
         </li>

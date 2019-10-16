@@ -5,7 +5,7 @@ import { ProtectedRoute } from '../components/ProtectedRoute';
 import { NavbarFooterAdmin } from '../layouts/NavbarFooterAdmin';
 import { Dashboard } from '../views/admin-views/Dashboard';
 import Invoices from '../containers/Invoices';
-import { NotFound } from '../views/auth-views/NotFound';
+import { NotFound } from '../views/NotFound';
 
 
 
