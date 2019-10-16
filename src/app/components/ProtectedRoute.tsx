@@ -1,10 +1,9 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 
 export const ProtectedRoute = ({
   component: Component,
   layout: Layout,
-  pageName,
   // isLoggedIn,
   ...props
 }) => {
@@ -13,7 +12,8 @@ export const ProtectedRoute = ({
       {...props}
       render={props => {
         return (
-          <Layout pageName={pageName}>
+          <Layout>
+            <p>{props.location.pathname}</p>
             <Component {...props} />
           </Layout>
         );

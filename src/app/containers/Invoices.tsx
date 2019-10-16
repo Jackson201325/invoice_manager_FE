@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 
-class Invoice extends Component {
+class Invoices extends Component {
   render() {
     return (
       <div className="invoice">
-        <p>Hello</p>
+        <p>Hello this is Invoices</p>
       </div>
     );
   }
 }
 
-export default Invoice;
+export default Invoices;
