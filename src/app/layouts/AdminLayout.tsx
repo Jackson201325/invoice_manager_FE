@@ -5,6 +5,8 @@ import { ProtectedRoute } from '../components/ProtectedRoute';
 import { NavbarFooterAdmin } from '../layouts/NavbarFooterAdmin';
 import { Dashboard } from '../views/admin-views/Dashboard';
 import Invoices from '../containers/Invoices';
+import { NotFound } from '../views/auth-views/NotFound';
+
 
 
 export const ROUTES = {
@@ -26,19 +28,22 @@ export const AdminLayout = props => {
       </div>
       <Switch>
         <ProtectedRoute
-          // exact
+          exact
           path={ROUTES.DASHBOARD}
           pageName="Login"
           component={Dashboard}
           layout={NavbarFooterAdmin}
         />
         <ProtectedRoute
-          // exact
+          exact
           path={ROUTES.INVOICES}
           pageName="SignUp"
           component={Invoices}
           layout={NavbarFooterAdmin}
         />
+        <Redirect from="/admin" to="/admin/dashboard" />
+        <Route path="*" pageName="Not Found" component={NotFound} />
+
       </Switch>
     </div>
   );
