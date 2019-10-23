@@ -17,6 +17,7 @@ import {
   createStyles,
   IconButton
 } from '@material-ui/core';
+import { Formik } from 'formik';
 
 export const AuthLogin = props => {
   const useStyles = makeStyles((theme: Theme) =>
@@ -25,9 +26,7 @@ export const AuthLogin = props => {
         flexGrow: 1
       },
       textField: {
-        marginLeft: theme.spacing(1),
-        marginRight: theme.spacing(1),
-        flexGrow: 1
+        marginBottom: theme.spacing(3)
       },
       input: {
         margin: theme.spacing(1)
@@ -49,7 +48,7 @@ export const AuthLogin = props => {
         display: 'flex',
         width: 320,
         margin: 'auto',
-        justifyContent: 'center'
+        flexDirection: 'column'
       },
       button: {
         background: 'linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)',
@@ -75,34 +74,8 @@ export const AuthLogin = props => {
               <Typography variant="h2">Login</Typography>
             </div>
             <CardContent>
-              {/* <FormControl className={classes.form}>
-                <TextField
-                  id="standard-password-input"
-                  label="Username"
-                  className={classes.textField}
-                  type="text"
-                  autoComplete="current-password"
-                  margin="normal"
-                />
-                <TextField
-                  id="standard-password-input"
-                  label="Password"
-                  className={classes.textField}
-                  type="password"
-                  autoComplete="current-password"
-                  margin="normal"
-                />
-                <Button
-                  variant="outlined"
-                  color="secondary"
-                  size="medium"
-                  className={classes.button}
-                >
-                  Login
-                </Button>
-              </FormControl> */}
               <Formik
-                initialValues={{ name: 'jared' }}
+                initialValues={{ username: '', password: '' }}
                 onSubmit={(values, actions) => {
                   setTimeout(() => {
                     alert(JSON.stringify(values, null, 2));
@@ -110,18 +83,36 @@ export const AuthLogin = props => {
                   }, 1000);
                 }}
                 render={props => (
-                  <form onSubmit={props.handleSubmit}>
-                    <input
-                      type="text"
+                  <form className={classes.form} onSubmit={props.handleSubmit}>
+                    <InputLabel htmlFor="username">Username</InputLabel>
+                    <Input
+                      id="username"
+                      name="username"
                       onChange={props.handleChange}
                       onBlur={props.handleBlur}
-                      value={props.values.name}
-                      name="name"
+                      value={props.values.username}
+                      className={classes.textField}
                     />
-                    {props.errors.name && (
-                      <div id="feedback">{props.errors.name}</div>
+                    {props.errors.username && (
+                      <div id="feedback">{props.errors.username}</div>
                     )}
-                    <button type="submit">Submit</button>
+
+                    <InputLabel htmlFor="password">Password</InputLabel>
+                    <Input
+                      id="password"
+                      name="password"
+                      onChange={props.handleChange}
+                      onBlur={props.handleBlur}
+                      value={props.values.password}
+                      className={classes.textField}
+                    />
+
+                    {props.errors.password && (
+                      <div id="feedback">{props.errors.password}</div>
+                    )}
+                    <Button type="submit" className={classes.button}>
+                      Login
+                    </Button>
                   </form>
                 )}
               />

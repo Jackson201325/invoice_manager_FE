@@ -25,7 +25,8 @@ const useStyles = makeStyles((theme: Theme) =>
       borderRadius: 3,
       color: 'white',
       height: 36,
-      padding: '0 12px'
+      padding: '0 12px',
+      transition: '0.2'
     },
     input: {
       display: 'none'
@@ -44,13 +45,7 @@ export const NavbarFooterAuth = props => {
           </Typography>
           <div>
             <Typography variant="h6" color="inherit">
-              <Button
-                variant="outlined"
-                color="secondary"
-                size="medium"
-                className={classes.button}
-                startIcon={<PersonAddIcon />}
-              >
+              <Button className={classes.button} startIcon={<PersonAddIcon />}>
                 Register
               </Button>
             </Typography>
