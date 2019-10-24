@@ -1,23 +1,21 @@
 import React from 'react';
-import { NavbarFooterAuth } from '../../layouts/NavbarFooterAuth';
-import './AuthLogin.scss';
 import {
   Typography,
   Card,
   Grid,
   CardContent,
   Button,
-  FormControl,
-  TextField,
-  OutlinedInput,
   InputLabel,
   Input,
   makeStyles,
   Theme,
-  createStyles,
-  IconButton
+  createStyles
 } from '@material-ui/core';
 import { Formik } from 'formik';
+import axios from 'axios';
+
+import { NavbarFooterAuth } from '../../layouts/NavbarFooterAuth';
+import './AuthLogin.scss';
 
 export const AuthLogin = props => {
   const useStyles = makeStyles((theme: Theme) =>
@@ -75,32 +73,35 @@ export const AuthLogin = props => {
             </div>
             <CardContent>
               <Formik
-                initialValues={{ username: '', password: '' }}
+                initialValues={{ email: '', password: '' }}
                 onSubmit={(values, actions) => {
-                  setTimeout(() => {
-                    alert(JSON.stringify(values, null, 2));
-                    actions.setSubmitting(false);
-                  }, 1000);
+                  axios
+                    .post(`http://localhost:3000/auth/login`, values)
+                    .then(response => {
+                      console.log(response);
+                    });
+                  // actions.setSubmitting(false);
                 }}
                 render={props => (
                   <form className={classes.form} onSubmit={props.handleSubmit}>
-                    <InputLabel htmlFor="username">Username</InputLabel>
+                    <InputLabel htmlFor="username">Email</InputLabel>
                     <Input
-                      id="username"
-                      name="username"
+                      id="email"
+                      name="email"
                       onChange={props.handleChange}
                       onBlur={props.handleBlur}
-                      value={props.values.username}
+                      value={props.values.email}
                       className={classes.textField}
                     />
-                    {props.errors.username && (
-                      <div id="feedback">{props.errors.username}</div>
+                    {props.errors.email && (
+                      <div id="feedback">{props.errors.email}</div>
                     )}
 
                     <InputLabel htmlFor="password">Password</InputLabel>
                     <Input
                       id="password"
                       name="password"
+                      type="password"
                       onChange={props.handleChange}
                       onBlur={props.handleBlur}
                       value={props.values.password}

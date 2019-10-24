@@ -5,6 +5,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
+import { Link } from 'react-router-dom';
 
 import './NavbarFooterAuth.scss';
 
@@ -45,9 +46,14 @@ export const NavbarFooterAuth = props => {
           </Typography>
           <div>
             <Typography variant="h6" color="inherit">
-              <Button className={classes.button} startIcon={<PersonAddIcon />}>
-                Register
-              </Button>
+              <Link className="link" to="/signup">
+                <Button
+                  className={classes.button}
+                  startIcon={<PersonAddIcon />}
+                >
+                  Sign Up
+                </Button>
+              </Link>
             </Typography>
           </div>
         </Toolbar>
