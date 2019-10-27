@@ -64,23 +64,6 @@ const useStyles = makeStyles((theme: Theme) =>
 const AuthLogin = () => {
   const classes = useStyles();
 
-  const handleSubmit = (values, { props, setSubmitting }) => {
-    axios
-      .post(`http://localhost:3000/auth/login`, values)
-      .then(response => {
-        localStorage.setItem('auth_token', response.data.auth_token);
-        console.log(props);
-      })
-      .catch(err => {
-        alert(err);
-      });
-    // actions.setSubmitting(false);
-    //process form submission here
-    //done submitting, set submitting to false
-    setSubmitting(false);
-    return;
-  };
-
   return (
     <Grid container justify="center" className={classes.root}>
       <Grid item md={6}>
@@ -92,18 +75,13 @@ const AuthLogin = () => {
             <Formik
               initialValues={{ email: '', password: '' }}
               onSubmit={(values, actions) => {
-                axios
-                  .post(`http://localhost:3000/auth/login`, values)
-                  .then(response => {
-                    localStorage.setItem(
-                      'auth_token',
-                      response.data.auth_token
-                    );
-                  })
-                  .catch(err => {
-                    alert(err);
-                  });
-                // actions.setSubmitting(false);
+                actions.setSubmitting(true);
+                this.props
+                  .login(values.email, values.password)
+                  .catch(error =>
+                    this.setState({ errorMessage: error.message })
+                  )
+                  .finally(() => actions.setSubmitting(false));
               }}
               render={props => (
                 <form className={classes.form} onSubmit={props.handleSubmit}>
