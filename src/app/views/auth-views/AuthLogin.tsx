@@ -12,7 +12,6 @@ import {
   createStyles
 } from '@material-ui/core';
 import { Formik } from 'formik';
-import axios from 'axios';
 import { withRouter, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
@@ -25,8 +24,9 @@ interface IProps {
   login: Function;
   errorMessage: string;
 }
-class AuthLogin extends Component<IProps, {}> {
-  useStyles = makeStyles((theme: Theme) =>
+
+export const LoginForm = props => {
+  const useStyles = makeStyles((theme: Theme) =>
     createStyles({
       root: {
         flexGrow: 1
@@ -69,81 +69,72 @@ class AuthLogin extends Component<IProps, {}> {
       }
     })
   );
-  render() {
-    const classes = this.useStyles();
+  const classes = useStyles();
 
-    if (this.props.isLoggedIn) {
-      return <Redirect to="/dashboard/login" />;
-    }
+  return (
+    <Grid container justify="center" className={classes.root}>
+      <Grid item md={6}>
+        <Card className={classes.card}>
+          <div className={classes.header}>
+            <Typography variant="h2">Login</Typography>
+          </div>
+          <CardContent>
+            <Formik
+              initialValues={{ email: '', password: '' }}
+              onSubmit={(values, actions) => {
+                actions.setSubmitting(true);
+                props.login(values).finally(() => actions.setSubmitting(false));
+                actions.setSubmitting(false);
+              }}
+              render={props => (
+                <form className={classes.form} onSubmit={props.handleSubmit}>
+                  <InputLabel htmlFor="username">Email</InputLabel>
+                  <Input
+                    id="email"
+                    name="email"
+                    onChange={props.handleChange}
+                    onBlur={props.handleBlur}
+                    value={props.values.email}
+                    className={classes.textField}
+                  />
+                  {props.errors.email && (
+                    <div id="feedback">{props.errors.email}</div>
+                  )}
 
-    return (
-      <Grid container justify="center" className={classes.root}>
-        <Grid item md={6}>
-          <Card className={classes.card}>
-            <div className={classes.header}>
-              <Typography variant="h2">Login</Typography>
-            </div>
-            <CardContent>
-              <Formik
-                initialValues={{ email: '', password: '' }}
-                onSubmit={(values, actions) => {
-                  actions.setSubmitting(true);
-                  // axios
-                  //   .post(`http://localhost:3000/auth/login`, values)
-                  //   .then(response => {
-                  //     localStorage.setItem(
-                  //       'auth_token',
-                  //       response.data.auth_token
-                  //     );
-                  //   })
-                  //   .catch(err => {
-                  //     alert(err);
-                  //   });
-                  this.props
-                    .login(values)
-                    .finally(() => actions.setSubmitting(false));
-                  actions.setSubmitting(false);
-                }}
-                render={props => (
-                  <form className={classes.form} onSubmit={props.handleSubmit}>
-                    <InputLabel htmlFor="username">Email</InputLabel>
-                    <Input
-                      id="email"
-                      name="email"
-                      onChange={props.handleChange}
-                      onBlur={props.handleBlur}
-                      value={props.values.email}
-                      className={classes.textField}
-                    />
-                    {props.errors.email && (
-                      <div id="feedback">{props.errors.email}</div>
-                    )}
+                  <InputLabel htmlFor="password">Password</InputLabel>
+                  <Input
+                    id="password"
+                    name="password"
+                    type="password"
+                    onChange={props.handleChange}
+                    onBlur={props.handleBlur}
+                    value={props.values.password}
+                    className={classes.textField}
+                  />
 
-                    <InputLabel htmlFor="password">Password</InputLabel>
-                    <Input
-                      id="password"
-                      name="password"
-                      type="password"
-                      onChange={props.handleChange}
-                      onBlur={props.handleBlur}
-                      value={props.values.password}
-                      className={classes.textField}
-                    />
-
-                    {props.errors.password && (
-                      <div id="feedback">{props.errors.password}</div>
-                    )}
-                    <Button type="submit" className={classes.button}>
-                      Login
-                    </Button>
-                  </form>
-                )}
-              />
-            </CardContent>
-          </Card>
-        </Grid>
+                  {props.errors.password && (
+                    <div id="feedback">{props.errors.password}</div>
+                  )}
+                  <Button type="submit" className={classes.button}>
+                    Login
+                  </Button>
+                </form>
+              )}
+            />
+          </CardContent>
+        </Card>
       </Grid>
-    );
+    </Grid>
+  );
+};
+
+class AuthLogin extends Component<IProps, {}> {
+  render() {
+    if (this.props.isLoggedIn) {
+      return <Redirect to="/dashboard" />;
+    } else {
+      return <LoginForm login={this.props.login} />;
+    }
   }
 }
 

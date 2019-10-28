@@ -13,9 +13,9 @@ export const composeEnhancers =
   (window && (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;
 
 const store = createStoreWithMiddleware(
-  rootReducers,
+  rootReducers
   // eslint-disable-next-line no-underscore-dangle
-  composeEnhancers
+  // composeEnhancers
 );
 
 export default store;

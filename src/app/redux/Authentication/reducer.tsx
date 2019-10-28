@@ -23,15 +23,10 @@ const clearStorageAndState = (newState, error = 'Unexpected Error') => {
 export default function authReducer(state = initialState, action) {
   const newState = { ...state };
   switch (action.type) {
-    case actionTypes.LOAD_AUTH:
-      newState.isLoggedIn = isLoggedIn;
-      initializeAxios();
-      break;
-
     case actionTypes.LOGIN_SUCCESS:
       console.log(action.payload);
-      localStorage.setItem(STORAGE_TOKEN_NAME, action.payload.authToken);
-      newState.isLoggedIn = isLoggedIn;
+      localStorage.setItem(STORAGE_TOKEN_NAME, action.payload);
+      newState.isLoggedIn = !isLoggedIn;
       initializeAxios();
       break;
 

@@ -1,4 +1,5 @@
 export function validateRequest(response) {
+  console.log(response);
   if (response.exception) {
     throw response.exception;
   }

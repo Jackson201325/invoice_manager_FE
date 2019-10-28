@@ -27,7 +27,7 @@ class App extends React.Component {
             layout={NavbarFooterAuth}
           />
           <Redirect from="/" to="/login" />
-          <Route path="*" pageName="Not Found" component={NotFound} />
+          {/* <Route path="*" pageName="Not Found" component={NotFound} /> */}
         </Switch>
       </BrowserRouter>
     );

@@ -32,12 +32,11 @@ export const AdminLayout = props => {
         />
         <ProtectedRoute
           exact
-          path={ROUTES.INVOICES}
+          path={`${props.path}${ROUTES.INVOICES}`}
           pageName="invoices"
           component={Invoices}
           layout={NavbarFooterAdmin}
         />
-        <Redirect from="/" to="/admin/dashboard" />
         <Route path="*" pageName="Not Found" component={NotFound} />
       </Switch>
     </div>
