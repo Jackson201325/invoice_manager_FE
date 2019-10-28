@@ -4,6 +4,7 @@ import initializeAxios from '../../api/axiosConfig';
 export interface IAuthenticationState {
   isLoggedIn: boolean;
   errorMessage: '';
+  isLoading: boolean;
 }
 
 export const initialState = {
@@ -12,7 +13,6 @@ export const initialState = {
 };
 
 const STORAGE_TOKEN_NAME = 'auth_token';
-const isLoggedIn = localStorage.getItem(STORAGE_TOKEN_NAME) ? true : false;
 
 const clearStorageAndState = (newState, error = 'Unexpected Error') => {
   localStorage.removeItem(STORAGE_TOKEN_NAME);
@@ -26,7 +26,7 @@ export default function authReducer(state = initialState, action) {
     case actionTypes.LOGIN_SUCCESS:
       console.log(action.payload);
       localStorage.setItem(STORAGE_TOKEN_NAME, action.payload);
-      newState.isLoggedIn = !isLoggedIn;
+      newState.isLoggedIn = true;
       initializeAxios();
       break;
 

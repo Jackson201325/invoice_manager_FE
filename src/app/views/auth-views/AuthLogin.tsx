@@ -15,8 +15,9 @@ import { Formik } from 'formik';
 import { withRouter, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import { login } from '../../redux/Authentication/action';
 import { IAuthenticationState } from '../../redux/Authentication/reducer';
+import { login } from '../../redux/Authentication/action';
+
 import './AuthLogin.scss';
 
 interface IProps {

@@ -9,14 +9,9 @@ import { urlResolver } from '../../api/loginApi';
 export const logout = () => dispatch =>
   dispatch({ type: actionTypes.LOGOUT_SUCCESS });
 
-/**
- * Login user by email and password as an credential object and add data to localStorage
- * @param {Object} credential
- */
 export const login = credential => dispatch =>
   new Promise((resolve, reject) => {
     const baseURL = `http://localhost:3000`;
-
     axios
       .post(`${baseURL}${urlResolver.LOGIN}`, credential)
       .then(response => {
