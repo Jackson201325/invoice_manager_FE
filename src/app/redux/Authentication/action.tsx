@@ -1,41 +1,36 @@
 import actionTypes from './actionTypes';
 import axios from 'axios';
-import { methodResolver, urlResolver } from '../../api/axiosConfig';
+
+import { urlResolver } from '../../api/loginApi';
+import { validateRequest } from '../../api/utils';
 /**
  * End user session, remove data from localStorage
  */
-export const logout = () => dispatch => {
-  dispatch({ type: actionTypes.LOGOUT_START });
 
-  axios
-    .post(urlResolver.LOGOUT, body)
-    .finally(dispatch({ type: actionTypes.LOGOUT_SUCCESS }));
+export const loadAuth = () => dispatch => {
+  dispatch({ type: actionTypes.LOAD_AUTH });
 };
 
+export const logout = () => dispatch =>
+  dispatch({ type: actionTypes.LOGOUT_SUCCESS });
+
 /**
- * Login user by email and password and add data to localStorage
- * @param {String} email
- * @param {String} password
- * @param {String} environment
- * @param {String} port
+ * Login user by email and password as an credential object and add data to localStorage
+ * @param {Object} credential
  */
-export const login = (email, password, environment, port) => dispatch =>
+export const login = credential => dispatch =>
   new Promise((resolve, reject) => {
-    dispatch({ type: actionTypes.LOGIN_START });
-
-    const baseURL = `${environment}:${port}`;
-
     axios
-      .post(`${baseURL}${urlResolver.LOGIN}`, body)
+      .post(`${urlResolver.LOGIN}`, credential)
       .then(data => {
         const successResult = validateRequest(data.data);
-        const payload = { baseURL, ...successResult };
+        const payload = { ...successResult };
         dispatch({ type: actionTypes.LOGIN_SUCCESS, payload });
         resolve('ok');
       })
       .catch(error => {
         console.info(error);
-        dispatch({ type: actionTypes.LOGIN_FAIL, payload: error });
+        dispatch({ type: actionTypes.LOGIN_FAIL, payload: error.message });
         reject(error);
       });
   });
