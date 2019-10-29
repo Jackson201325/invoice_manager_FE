@@ -1,12 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { IAuthenticationState } from '../redux/Authentication/reducer';
-import { logout } from '../redux/Authentication/action';
+// import { IAuthenticationState } from '../redux/Authentication/reducer';
+// import { logout } from '../redux/Authentication/action';
 import { withRouter } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { getThemeProps } from '@material-ui/styles';
+// import { connect } from 'react-redux';
 
 export const Sidebar = props => {
+
   return (
     <div
       style={{
@@ -23,23 +23,19 @@ export const Sidebar = props => {
           <Link to="/admin/dashboard">Dashboard</Link>
         </li>
         <li>
-          <button onClick={props.logout}>Logout</button>
+          <Link to="/login">
+            <button onClick={props.logout}>Logout</button>
+          </Link>
         </li>
       </ul>
     </div>
   );
 };
 
-const mapStateToProps = (state: { authReducer: IAuthenticationState }) => {
-  console.log(state);
-  return {
-    isLoggedIn: state.authReducer.isLoggedIn
-  };
-};
+// const mapStateToProps = (state: { authReducer: IAuthenticationState }) => {
+//   return {
+//     isLoggedIn: state.authReducer.isLoggedIn
+//   };
+// };
 
-export default withRouter(
-  connect(
-    mapStateToProps,
-    { logout }
-  )(Sidebar)
-);
+export default withRouter(Sidebar)

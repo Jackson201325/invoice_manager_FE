@@ -1,13 +1,17 @@
 import React from 'react';
 import { Route, Redirect, withRouter } from 'react-router-dom';
+import { IAuthenticationState } from '../redux/Authentication/reducer';
+import { logout } from '../redux/Authentication/action';
+import { connect } from 'react-redux';
 
 const ProtectedRoute = ({
   component: Component,
   layout: Layout,
   isLoggedIn,
+  logout,
   ...props
 }) => {
-  console.log(isLoggedIn);
+
   return (
     <Route
       {...props}
@@ -25,9 +29,20 @@ const ProtectedRoute = ({
             </Layout>
           );
         }
-      }}
+      }
+      }
     />
   );
 };
 
-export default withRouter(ProtectedRoute);
+const mapStateToProps = (state: { authReducer: IAuthenticationState }) => {
+  return {
+    isLoggedIn: state.authReducer.isLoggedIn,
+  };
+};
+
+export default withRouter(connect(
+  mapStateToProps,
+  { logout }
+)(ProtectedRoute));
+

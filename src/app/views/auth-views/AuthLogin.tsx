@@ -84,8 +84,8 @@ export const LoginForm = props => {
               initialValues={{ email: '', password: '' }}
               onSubmit={(values, actions) => {
                 actions.setSubmitting(true);
-                props.login(values).finally(() => actions.setSubmitting(false));
-                actions.setSubmitting(false);
+                console.log(values)
+                props.login(values).then(() => actions.setSubmitting(false));
               }}
               render={props => (
                 <form className={classes.form} onSubmit={props.handleSubmit}>
@@ -140,7 +140,6 @@ class AuthLogin extends Component<IProps, {}> {
 }
 
 const mapStateToProps = (state: { authReducer: IAuthenticationState }) => {
-  console.log(state);
   return {
     isLoggedIn: state.authReducer.isLoggedIn,
     errorMessage: state.authReducer.errorMessage
