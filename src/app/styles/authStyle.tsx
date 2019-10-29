@@ -1,16 +1,4 @@
-import React from 'react';
-import {
-  Typography,
-  Card,
-  Grid,
-  CardContent,
-  Button,
-  InputLabel,
-  Input,
-  makeStyles,
-  Theme,
-  createStyles
-} from '@material-ui/core';
+import { makeStyles, Theme, createStyles } from '@material-ui/core';
 
 export const authStyles = makeStyles((theme: Theme) =>
   createStyles({

@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export const NavbarFooterAuth = props => {
   const classes = useStyles();
-  const inSignUp = props.children[0].props.location.pathname == '/signup';
+  const inSignUp = props.children[0].props.location.pathname === '/signup';
 
   return (
     <div className="NavbarFooterAuth">
