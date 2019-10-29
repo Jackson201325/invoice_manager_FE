@@ -17,8 +17,8 @@ const ProtectedRoute = ({
       render={props => {
         const AuthLayouts = ['/login', '/signup'];
         const inAuthLayout = AuthLayouts.includes(props.location.pathname);
-        console.log(isLoggedIn);
-        console.log(inAuthLayout);
+        console.log('isLoggedIn', isLoggedIn);
+        console.log('inAuthLayout', inAuthLayout);
         if (!isLoggedIn && !inAuthLayout) {
           return <Redirect to="/login" />;
         } else if (isLoggedIn && inAuthLayout) {

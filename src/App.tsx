@@ -30,6 +30,7 @@ const App = () => {
           component={SignUp}
           layout={NavbarFooterAuth}
         />
+        <Redirect from="/" to="/login" />
         <Route path="*" pageName="Not Found" component={NotFound} />
       </Switch>
     </BrowserRouter>
