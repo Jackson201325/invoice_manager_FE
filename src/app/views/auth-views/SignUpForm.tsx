@@ -25,7 +25,8 @@ export const SignUpForm = props => {
               initialValues={{
                 email: '',
                 password: '',
-                password_confirmation: ''
+                password_confirmation: '',
+                name: ''
               }}
               onSubmit={(values, actions) => {
                 actions.setSubmitting(true);
@@ -35,6 +36,18 @@ export const SignUpForm = props => {
               }}
               render={props => (
                 <form className={classes.form} onSubmit={props.handleSubmit}>
+                  <InputLabel htmlFor="name">Name</InputLabel>
+                  <Input
+                    id="name"
+                    name="name"
+                    onChange={props.handleChange}
+                    onBlur={props.handleBlur}
+                    value={props.values.name}
+                    className={classes.textField}
+                  />
+                  {props.errors.name && (
+                    <div id="feedback">{props.errors.name}</div>
+                  )}
                   <InputLabel htmlFor="username">Email</InputLabel>
                   <Input
                     id="email"

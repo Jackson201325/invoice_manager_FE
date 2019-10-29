@@ -5,6 +5,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
+import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight';
 import { Link } from 'react-router-dom';
 
 import './NavbarFooterAuth.scss';
@@ -37,6 +38,8 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export const NavbarFooterAuth = props => {
   const classes = useStyles();
+  const inSignUp = props.children[0].props.location.pathname == '/signup';
+
   return (
     <div className="NavbarFooterAuth">
       <AppBar position="static" className="app-bar">
@@ -46,14 +49,25 @@ export const NavbarFooterAuth = props => {
           </Typography>
           <div>
             <Typography variant="h6" color="inherit">
-              <Link className="link" to="/signup">
-                <Button
-                  className={classes.button}
-                  startIcon={<PersonAddIcon />}
-                >
-                  Sign Up
-                </Button>
-              </Link>
+              {!inSignUp ? (
+                <Link className="link" to="/signup">
+                  <Button
+                    className={classes.button}
+                    startIcon={<PersonAddIcon />}
+                  >
+                    Sign Up
+                  </Button>
+                </Link>
+              ) : (
+                <Link className="link" to="/auth/login">
+                  <Button
+                    className={classes.button}
+                    startIcon={<KeyboardArrowRightIcon />}
+                  >
+                    Login
+                  </Button>
+                </Link>
+              )}
             </Typography>
           </div>
         </Toolbar>
