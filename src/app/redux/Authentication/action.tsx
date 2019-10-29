@@ -17,7 +17,7 @@ export const login = credential => dispatch =>
       .then(response => {
         const payload = response.data.auth_token;
         dispatch({ type: actionTypes.LOGIN_SUCCESS, payload });
-        resolve('ok');
+        resolve(response.status);
       })
       .catch(error => {
         console.info(error);
@@ -25,4 +25,22 @@ export const login = credential => dispatch =>
         dispatch({ type: actionTypes.LOGIN_FAIL, payload });
         reject(error);
       });
+  });
+
+export const signUp = credential => dispatch =>
+  new Promise((resolve, reject) => {
+    // const baseURL = `http://localhost:3000`;
+    // axios
+    //   .post(`${baseURL}${urlResolver.SIGNUP}`, credential)
+    //   .then(response => {
+    //     const payload = response.data;
+    //     dispatch({ type: actionTypes.LOGIN_SUCCESS, payload });
+    //     resolve(response.status);
+    //   })
+    //   .catch(error => {
+    //     console.info(error);
+    //     const payload = error.message;
+    //     dispatch({ type: actionTypes.LOGIN_FAIL, payload });
+    //     reject(error);
+    //   });
   });

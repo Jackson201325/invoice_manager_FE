@@ -39,7 +39,6 @@ const App = props => {
 };
 
 const mapStateToProps = (state: { authReducer: IAuthenticationState }) => {
-  console.log(state);
   return {
     isLoggedIn: state.authReducer.isLoggedIn,
     errorMessage: state.authReducer.errorMessage

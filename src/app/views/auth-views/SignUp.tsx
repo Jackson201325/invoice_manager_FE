@@ -1,16 +1,29 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+
+import { IAuthenticationState } from '../../redux/Authentication/reducer';
+import { signUp } from '../../redux/Authentication/action';
+import { SignUpForm } from './SignUpForm';
 
 const SignUp = props => {
-  return (
-    <div className="signup">
-      {props.location.pathname}
-
-      <h1>Hello this is SignUp</h1>
-      <Link to="/login">Login</Link>
-    </div>
-  );
+  return <SignUpForm signUp={props.signUp} />;
 };
 
-export default withRouter(SignUp);
+const mapStateToProps = (state: { authReducer: IAuthenticationState }) => {
+  return {
+    isLoggedIn: state.authReducer.isLoggedIn,
+    errorMessage: state.authReducer.errorMessage
+  };
+};
+
+export default withRouter(
+  connect(
+    mapStateToProps,
+    { signUp }
+  )(SignUp)
+);
+
+// :email,
+// :password,
+// :password_confirmation

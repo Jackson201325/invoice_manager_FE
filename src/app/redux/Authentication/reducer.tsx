@@ -24,7 +24,6 @@ export default function authReducer(state = initialState, action) {
   const newState = { ...state };
   switch (action.type) {
     case actionTypes.LOGIN_SUCCESS:
-      console.log(action.payload);
       localStorage.setItem(STORAGE_TOKEN_NAME, action.payload);
       newState.isLoggedIn = true;
       initializeAxios();
@@ -39,6 +38,15 @@ export default function authReducer(state = initialState, action) {
       clearStorageAndState(newState, action.payload);
       initializeAxios();
       break;
+
+    case actionTypes.CREATE_USER_SUCCESS:
+      initializeAxios();
+      break;
+
+    case actionTypes.CREATE_USER_FAIL:
+      initializeAxios();
+      break;
   }
+  console.log(newState);
   return newState;
 }
