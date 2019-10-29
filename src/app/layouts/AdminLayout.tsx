@@ -1,7 +1,10 @@
 import React from 'react';
-import { Switch, Redirect, Route } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { Route, withRouter, Switch } from 'react-router-dom';
 
 import ProtectedRoute from '../components/ProtectedRoute';
+import { IAuthenticationState } from '../redux/Authentication/reducer';
+import { logout } from '../redux/Authentication/action';
 import { NavbarFooterAdmin } from '../layouts/NavbarFooterAdmin';
 import { Dashboard } from '../views/admin-views/Dashboard';
 import Invoices from '../containers/Invoices';
@@ -13,7 +16,7 @@ export const ROUTES = {
   INVOICES: '/admin/invoices'
 };
 
-export const AdminLayout = props => {
+const AdminLayout = props => {
   return (
     <div
       style={{
@@ -21,7 +24,7 @@ export const AdminLayout = props => {
         display: 'flex'
       }}
     >
-      <Sidebar />
+      <Sidebar logout={props.logout} />
       <Switch>
         <ProtectedRoute
           exact
@@ -32,7 +35,7 @@ export const AdminLayout = props => {
         />
         <ProtectedRoute
           exact
-          path={`${props.path}${ROUTES.INVOICES}`}
+          path={`${ROUTES.INVOICES}`}
           pageName="invoices"
           component={Invoices}
           layout={NavbarFooterAdmin}
@@ -42,3 +45,15 @@ export const AdminLayout = props => {
     </div>
   );
 };
+
+const mapStateToProps = (state: { authReducer: IAuthenticationState }) => {
+  return {
+    isLoggedIn: state.authReducer.isLoggedIn,
+  };
+};
+
+export default withRouter(connect(
+  mapStateToProps,
+  { logout }
+)(AdminLayout));
+
