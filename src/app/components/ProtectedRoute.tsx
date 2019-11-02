@@ -17,8 +17,8 @@ const ProtectedRoute = ({
       render={props => {
         const AuthLayouts = ['/login', '/signup'];
         const inAuthLayout = AuthLayouts.includes(props.location.pathname);
-        console.log('isLoggedIn', isLoggedIn);
-        console.log('inAuthLayout', inAuthLayout);
+        // console.log('isLoggedIn', isLoggedIn);
+        // console.log('inAuthLayout', inAuthLayout);
         if (!isLoggedIn && !inAuthLayout) {
           return <Redirect to="/login" />;
         } else if (isLoggedIn && inAuthLayout) {
@@ -30,20 +30,20 @@ const ProtectedRoute = ({
             </Layout>
           );
         }
-      }
-      }
+      }}
     />
   );
 };
 
 const mapStateToProps = (state: { authReducer: IAuthenticationState }) => {
   return {
-    isLoggedIn: state.authReducer.isLoggedIn,
+    isLoggedIn: state.authReducer.isLoggedIn
   };
 };
 
-export default withRouter(connect(
-  mapStateToProps,
-  { logout }
-)(ProtectedRoute));
-
+export default withRouter(
+  connect(
+    mapStateToProps,
+    { logout }
+  )(ProtectedRoute)
+);

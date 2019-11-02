@@ -51,6 +51,5 @@ export default function authReducer(state = initialState, action) {
       initializeAxios();
       break;
   }
-  console.log(newState);
   return newState;
 }
