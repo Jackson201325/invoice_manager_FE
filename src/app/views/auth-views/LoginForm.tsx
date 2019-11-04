@@ -1,5 +1,5 @@
 import React from 'react';
-import { authStyles } from '../../styles/authStyle';
+import { formStyles } from '../../styles/formStyles';
 import {
   Typography,
   Card,
@@ -7,12 +7,12 @@ import {
   CardContent,
   Button,
   InputLabel,
-  Input,
+  Input
 } from '@material-ui/core';
 import { Formik } from 'formik';
 
 export const LoginForm = props => {
-  const classes = authStyles();
+  const classes = formStyles();
   return (
     <Grid container justify="center" className={classes.root}>
       <Grid item md={6}>

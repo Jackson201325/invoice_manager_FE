@@ -1,5 +1,5 @@
 import actionTypes from './actionTypes';
-import initializeAxios from '../../api/axiosConfig';
+import initializeAxios from '../../apiPath/axiosConfig';
 
 export interface IAuthenticationState {
   isLoggedIn: boolean;

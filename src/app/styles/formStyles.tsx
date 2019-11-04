@@ -1,6 +1,6 @@
 import { makeStyles, Theme, createStyles } from '@material-ui/core';
 
-export const authStyles = makeStyles((theme: Theme) =>
+export const formStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       flexGrow: 1
