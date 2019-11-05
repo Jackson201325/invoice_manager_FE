@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 import { IAuthenticationState } from '../../redux/Authentication/reducer';
 import { signUp } from '../../redux/Authentication/action';
-import { SignUpForm } from './SignUpForm';
+import { SignUpForm } from '../auth-views/SignUpForm';
 
 const SignUp = props => {
   return <SignUpForm signUp={props.signUp} />;

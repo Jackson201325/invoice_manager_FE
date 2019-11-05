@@ -12,8 +12,11 @@ export const logout = () => dispatch => {
 };
 export const createInvoice = () => dispatch =>
   new Promise((resolve, reject) => {
+    dispatch({ type: actionTypes.CREATE_INVOICE_START });
+    const baseURL = `http://localhost:3000`;
+
     axios
-      .post(`http://localhost:3000/invoices`)
+      .post(`${baseURL}${urlResolver.CREATE}`)
       .then(response => {
         const payload = response;
         dispatch({ type: actionTypes.CREATE_INVOICE_SUCCESS, payload });
@@ -29,11 +32,12 @@ export const createInvoice = () => dispatch =>
 
 export const getInvoices = () => dispatch =>
   new Promise((resolve, reject) => {
+    dispatch({ type: actionTypes.GET_INVOICE_START });
     const baseURL = `http://localhost:3000`;
     axios
       .post(`${baseURL}${urlResolver.GET}`)
       .then(response => {
-        const payload = response;
+        const payload = response.data;
         console.log(response);
         dispatch({ type: actionTypes.GET_INVOICE_SUCCESS, payload });
         resolve(response.status);

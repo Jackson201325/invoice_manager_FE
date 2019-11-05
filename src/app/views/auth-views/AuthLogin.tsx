@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import { withRouter, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { LoginForm } from './LoginForm';
+import { LoginForm } from '../forms/LoginForm';
 
 import { IAuthenticationState } from '../../redux/Authentication/reducer';
 import { login } from '../../redux/Authentication/action';

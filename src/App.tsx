@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import AdminLayout from './app/layouts/AdminLayout';
 import { NotFound } from './app/views/NotFound';
 import AuthLogin from './app/views/auth-views/AuthLogin';
-import SignUp from './app/views/auth-views/SignUp';
+import SignUp from './app/views/forms/SignUp';
 import { NavbarFooterAuth } from './app/layouts/NavbarFooterAuth';
 import ProtectedRoute from './app/components/ProtectedRoute';
 import { IAuthenticationState } from './app/redux/Authentication/reducer';
