@@ -5,7 +5,7 @@ export interface IAuthenticationState {
   errorMessage: '';
   isLoading: boolean;
 }
-const STORAGE_TOKEN_NAME = 'auth_token';
+const STORAGE_TOKEN_NAME = 'Authorization';
 
 export const initialState = {
   isLoggedIn: localStorage.getItem(STORAGE_TOKEN_NAME) ? true : false,

@@ -23,7 +23,3 @@ export default withRouter(
     { signUp }
   )(SignUp)
 );
-
-// :email,
-// :password,
-// :password_confirmation

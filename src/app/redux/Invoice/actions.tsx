@@ -33,18 +33,19 @@ export const createInvoice = () => dispatch =>
 export const getInvoices = () => dispatch =>
   new Promise((resolve, reject) => {
     dispatch({ type: actionTypes.GET_INVOICE_START });
-    const baseURL = `http://localhost:3000`;
+    const token = localStorage.getItem('Authorization');
+    axios.defaults.headers.common['Authorization'] = token;
     axios
-      .post(`${baseURL}${urlResolver.GET}`)
+      .get('http://localhost:3000/invoices')
       .then(response => {
         const payload = response.data;
         console.log(response);
         dispatch({ type: actionTypes.GET_INVOICE_SUCCESS, payload });
-        resolve(response.status);
+        resolve(response.data);
       })
       .catch(error => {
-        console.info(error);
         const payload = error.message;
+        console.info(error);
         dispatch({ type: actionTypes.GET_INVOICE__FAIL, payload });
         reject(error);
       });

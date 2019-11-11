@@ -19,7 +19,7 @@ const ProtectedRoute = ({
         const inAuthLayout = AuthLayouts.includes(props.location.pathname);
         // console.log('isLoggedIn', isLoggedIn);
         // console.log('inAuthLayout', inAuthLayout);
-        console.log('props', props);
+        // console.log('props', props);
         if (!isLoggedIn && !inAuthLayout) {
           return <Redirect to="/login" />;
         } else if (isLoggedIn && inAuthLayout) {
@@ -27,7 +27,7 @@ const ProtectedRoute = ({
         } else {
           return (
             <Layout>
-              <Component {...props} />;
+              <Component {...props} />
             </Layout>
           );
         }

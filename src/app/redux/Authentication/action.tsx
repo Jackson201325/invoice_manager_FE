@@ -35,7 +35,7 @@ export const signUp = credential => dispatch =>
       .post(`${baseURL}${urlResolver.SIGNUP}`, credential)
       .then(response => {
         const payload = response.data.auth_token;
-        console.log(response);
+        // console.log(response);
         dispatch({ type: actionTypes.CREATE_USER_SUCCESS, payload });
         resolve(response.status);
       })
