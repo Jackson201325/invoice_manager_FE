@@ -1,14 +1,14 @@
-import React from 'react';
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Button from '@material-ui/core/Button';
-import PersonAddIcon from '@material-ui/icons/PersonAdd';
-import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
+import Typography from "@material-ui/core/Typography";
+import AppBar from "@material-ui/core/AppBar";
+import Toolbar from "@material-ui/core/Toolbar";
+import Button from "@material-ui/core/Button";
+import PersonAddIcon from "@material-ui/icons/PersonAdd";
+import KeyboardArrowRightIcon from "@material-ui/icons/KeyboardArrowRight";
+import { Link } from "react-router-dom";
 
-import './NavbarFooterAuth.scss';
+import "./NavbarFooterAuth.scss";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -22,23 +22,24 @@ const useStyles = makeStyles((theme: Theme) =>
       flexGrow: 1
     },
     button: {
-      background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+      background: "linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)",
       border: 0,
       borderRadius: 3,
-      color: 'white',
+      color: "white",
       height: 36,
-      padding: '0 12px',
-      transition: '0.2'
+      padding: "0 12px",
+      transition: "0.2"
     },
     input: {
-      display: 'none'
+      display: "none"
     }
   })
 );
 
 export const NavbarFooterAuth = props => {
   const classes = useStyles();
-  const inSignUp = props.children[0].props.location.pathname === '/signup';
+  const inSignUp =
+    props && props.children.props.location.pathname === "/signup";
 
   return (
     <div className="NavbarFooterAuth">

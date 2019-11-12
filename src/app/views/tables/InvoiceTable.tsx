@@ -7,13 +7,17 @@ import React from 'react';
 import MaterialTable, { Column } from 'material-table';
 
 import { invoiceTableStyle } from '../../styles/invoiceTableStyle';
+import { ninvoke } from 'q';
 // import { CardHeader, Avatar } from '@material-ui/core';
 
 interface Row {
-  name: string;
-  surname: string;
-  birthYear: number;
-  birthCity: number;
+  created_at: string;
+  id: number;
+  items: [];
+  total_net_sales: number;
+  total_profit: number;
+  total_spend: number;
+  updated_at: string;
 }
 
 interface TableState {
@@ -26,7 +30,7 @@ export const InvoiceTable = props => {
     columns: [
       {
         title: 'Id',
-        field: 'Id',
+        field: 'id',
         // lookup: { 34: 'İstanbul', 63: 'Şanlıurfa' },
         type: 'numeric'
       },
@@ -36,14 +40,11 @@ export const InvoiceTable = props => {
       {
         title: 'Created at',
         field: 'created_at',
-        // lookup: { 34: 'İstanbul', 63: 'Şanlıurfa' },
-        type: 'numeric'
+        type: 'string'
       }
     ],
     data: props.invoice
   });
-  // console.log(props.invoice);
-  // const classes = invoiceTableStyle();
 
   return (
     <MaterialTable title="Invoices" columns={state.columns} data={state.data} />

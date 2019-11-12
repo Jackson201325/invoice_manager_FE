@@ -45,7 +45,19 @@ export default function invoiceReducer(
     case actionTypes.GET_INVOICE_SUCCESS:
       newState.isLoading = false;
       newState.invoices = List(
-        action.payload.map(element => invoiceRecord(element))
+        action.payload.map(element => {
+          // console.log(element.created_at);
+          const date = new Date(element.created_at);
+          const options = {
+            year: 'numeric',
+            month: 'numeric',
+            day: 'numeric'
+          };
+          element.created_at = date.toLocaleDateString('en-EN', options);
+          // console.log(typeof element);
+          // console.log(element);
+          invoiceRecord(element);
+        })
       );
       break;
 

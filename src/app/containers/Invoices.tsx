@@ -31,13 +31,19 @@ class Invoices extends Component<IProps, IState> {
     };
   }
 
+  createInvoice = () => {
+    this.props.createInvoice().then(() => {
+      window.location.reload();
+    });
+  };
+
   redirectTo = path => {
     this.props.history.push(path);
   };
 
   componentDidMount() {
     this.props.getInvoices().then(response => {
-      console.log(response);
+      // console.log(response);
       this.setState({
         invoices: response
       });
@@ -45,10 +51,10 @@ class Invoices extends Component<IProps, IState> {
   }
 
   render() {
-    console.log(this.props);
+    // console.log(this.props);
     return (
       <div className="invoice">
-        <CreateInvoice createInvoice={this.props.createInvoice} />
+        <CreateInvoice createInvoice={this.createInvoice} />
         {/* {this.props.location.pathname} */}
         {!this.props.isLoading && this.state.invoices.length > 0 && (
           <InvoiceTable invoice={this.state.invoices} />

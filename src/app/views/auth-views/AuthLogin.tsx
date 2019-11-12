@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import { withRouter, Redirect } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { LoginForm } from '../forms/LoginForm';
+import { withRouter, Redirect } from "react-router-dom";
+import { connect } from "react-redux";
+import { LoginForm } from "../forms/LoginForm";
 
-import { IAuthenticationState } from '../../redux/Authentication/reducer';
-import { login } from '../../redux/Authentication/action';
+import { IAuthenticationState } from "../../redux/Authentication/reducer";
+import { login } from "../../redux/Authentication/action";
 
 interface IProps {
   isLoggedIn: boolean;
@@ -15,7 +15,7 @@ interface IProps {
 
 class AuthLogin extends Component<IProps, {}> {
   render() {
-    console.log(this.props);
+    // console.log(this.props);
     if (this.props.isLoggedIn) {
       return <Redirect to="/admin/dashboard" />;
     } else {
