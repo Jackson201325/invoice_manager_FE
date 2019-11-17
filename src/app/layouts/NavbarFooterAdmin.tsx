@@ -1,4 +1,5 @@
 import React from 'react';
+import './NavbarFooterAdmin.scss';
 export const NavbarFooterAdmin = props => {
   return (
     <div className="NavbarFooterAdmin">

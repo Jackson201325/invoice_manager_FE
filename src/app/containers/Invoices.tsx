@@ -1,15 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { TextField } from '@material-ui/core';
 // import { Route, Redirect, withRouter } from 'react-router-dom';
-import axios from 'axios';
+
 import { IInvoiceState } from '../redux/Invoice/reducer';
 import { createInvoice, getInvoices } from '../redux/Invoice/actions';
 import { CreateInvoice } from '../views/forms/CreateInvoice';
-import { InvoiceTable } from '../views/tables/InvoiceTable';
-import { If } from '../../types/jsx-control-statements.d';
-// import { Switch } from '@material-ui/core';
-// import ProtectedRoute from '../components/ProtectedRoute';
-
+import InvoiceTable from '../views/tables/InvoiceTable';
+import './invoices.scss';
 interface IProps {
   location: any;
   pathname: any;
@@ -17,20 +15,10 @@ interface IProps {
   createInvoice: any;
   getInvoices: any;
   isLoading: any;
-}
-
-interface IState {
   invoices: any;
 }
 
-class Invoices extends Component<IProps, IState> {
-  constructor(props) {
-    super(props);
-    this.state = {
-      invoices: []
-    };
-  }
-
+class Invoices extends Component<IProps, {}> {
   createInvoice = () => {
     this.props.createInvoice().then(() => {
       window.location.reload();
@@ -42,22 +30,27 @@ class Invoices extends Component<IProps, IState> {
   };
 
   componentDidMount() {
-    this.props.getInvoices().then(response => {
-      console.log(response);
-      this.setState({
-        invoices: response
-      });
-    });
+    console.log('ehllo');
+    this.props.getInvoices();
   }
 
   render() {
-    // console.log(this.props);
     return (
       <div className="invoice">
-        <CreateInvoice createInvoice={this.createInvoice} />
-        {/* {this.props.location.pathname} */}
-        {!this.props.isLoading && this.state.invoices.length > 0 && (
-          <InvoiceTable invoices={this.state.invoices} />
+        <h1>Invoices</h1>
+        <div className="action--field">
+          <TextField
+            id="standard-basic"
+            className="invoice--input"
+            label="Search invoices..."
+          />
+          <CreateInvoice
+            classname="create--invoice"
+            createInvoice={this.createInvoice}
+          />
+        </div>
+        {!this.props.isLoading && this.props.invoices.size > 0 && (
+          <InvoiceTable invoices={this.props.invoices} />
         )}
       </div>
     );
@@ -65,9 +58,9 @@ class Invoices extends Component<IProps, IState> {
 }
 
 const mapStateToProps = (state: { invoiceReducer: IInvoiceState }) => {
-  // console.log(state.invoiceReducer.isLoading);
   return {
-    isLoading: state.invoiceReducer.isLoading
+    isLoading: state.invoiceReducer.isLoading,
+    invoices: state.invoiceReducer.invoices
   };
 };
 

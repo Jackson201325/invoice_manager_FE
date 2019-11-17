@@ -1,5 +1,6 @@
 import { List, Record } from 'immutable';
 export type IItem = {
+  id: string,
   name: string,
   model: string,
   description: string,
@@ -7,17 +8,15 @@ export type IItem = {
   company: string,
   year: string,
   url: string,
-  cost_price_usd: string,
+  cost_price: string,
+  sales_price: string,
   order: number,
+  total_revenue: number,
+  invoice_id: number,
+  total_cost: number,
+  profit: number,
   confirm: boolean,
-  cost_price_pyg?: string,
-  sales_price_pyg?: string,
-  profit_per_unit?: string,
-  total_revenue?: number,
-  profit?: number,
-  total_cost_price?: number,
-  created_at?: string,
-  updated_at?: string
+  invoice: string
 }
 
 
@@ -40,4 +39,24 @@ export const invoiceRecord = Record({
   created_at: '',
   updated_at: '',
   items: [],
+})
+
+export const itemRecord = Record({
+  id: '',
+  name: '',
+  model: '',
+  description: '',
+  color: '',
+  company: '',
+  year: '',
+  url: '',
+  cost_price: '',
+  sales_price: '',
+  order: 0,
+  total_revenue: 0,
+  invoice_id: 0,
+  total_cost: 0,
+  profit: 0,
+  confirm: false,
+  invoice: ''
 })

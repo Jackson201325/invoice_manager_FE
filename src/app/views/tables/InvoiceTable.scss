@@ -1,6 +1,7 @@
 .data--display {
   display: flex;
   align-items: center;
+  // justify-content: space-evenly;
 }
 
 h2 {
@@ -15,4 +16,8 @@ h2 {
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-column-gap: 16px;
   grid-row-gap: 24px;
+}
+
+.icon--display {
+  margin-right: 8px;
 }

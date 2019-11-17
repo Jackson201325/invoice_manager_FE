@@ -10,8 +10,7 @@ export const createInvoiceStyle = makeStyles((theme: Theme) =>
       height: 48,
       boxShadow: '0 3px 5px 2px rgba(33, 203, 243, .3)',
       marginTop: 24,
-      width: 200,
-      margin: 'auto'
+      width: 200
     }
   })
 );

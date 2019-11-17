@@ -30,13 +30,15 @@ import { IAuthenticationState } from '../redux/Authentication/reducer';
 import { logout } from '../redux/Authentication/action';
 import { NavbarFooterAdmin } from '../layouts/NavbarFooterAdmin';
 import { Dashboard } from '../views/admin-views/Dashboard';
+import Invoice from '../containers/Invoice';
 import Invoices from '../containers/Invoices';
 import { NotFound } from '../views/NotFound';
 import { adminLayoutStyle } from '../styles/adminLayoutStyle';
 
 export const ROUTES = {
   DASHBOARD: '/admin/dashboard',
-  INVOICES: '/admin/invoices'
+  INVOICES: '/admin/invoices',
+  INVOICE: '/admin/invoices/:id'
 };
 
 const AdminLayout = props => {
@@ -172,6 +174,13 @@ const AdminLayout = props => {
             path={`${ROUTES.INVOICES}`}
             pageName="invoices"
             component={Invoices}
+            layout={NavbarFooterAdmin}
+          />
+          <ProtectedRoute
+            exact
+            path={`${ROUTES.INVOICE}`}
+            pageName="invoice"
+            component={Invoice}
             layout={NavbarFooterAdmin}
           />
           <Route path="*" pageName="Not Found" component={NotFound} />
