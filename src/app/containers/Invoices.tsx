@@ -43,7 +43,7 @@ class Invoices extends Component<IProps, IState> {
 
   componentDidMount() {
     this.props.getInvoices().then(response => {
-      // console.log(response);
+      console.log(response);
       this.setState({
         invoices: response
       });
@@ -57,7 +57,7 @@ class Invoices extends Component<IProps, IState> {
         <CreateInvoice createInvoice={this.createInvoice} />
         {/* {this.props.location.pathname} */}
         {!this.props.isLoading && this.state.invoices.length > 0 && (
-          <InvoiceTable invoice={this.state.invoices} />
+          <InvoiceTable invoices={this.state.invoices} />
         )}
       </div>
     );

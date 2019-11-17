@@ -15,7 +15,7 @@ export type IItem = {
   profit_per_unit?: string,
   total_revenue?: number,
   profit?: number,
-  total_cost_price_pyg?: number,
+  total_cost_price?: number,
   created_at?: string,
   updated_at?: string
 }

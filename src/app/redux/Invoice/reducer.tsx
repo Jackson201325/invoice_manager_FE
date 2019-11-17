@@ -49,11 +49,12 @@ export default function invoiceReducer(
           // console.log(element.created_at);
           const date = new Date(element.created_at);
           const options = {
+            weekday: 'long',
             year: 'numeric',
-            month: 'numeric',
-            day: 'numeric'
+            month: 'short',
+            day: '2-digit'
           };
-          element.created_at = date.toLocaleDateString('en-EN', options);
+          element.created_at = date.toLocaleDateString('en-US', options);
           // console.log(typeof element);
           // console.log(element);
           invoiceRecord(element);

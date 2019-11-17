@@ -1,0 +1,18 @@
+.data--display {
+  display: flex;
+  align-items: center;
+}
+
+h2 {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 600;
+  margin-top: 0px;
+  margin-bottom: 32px;
+}
+
+.invoices {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-column-gap: 16px;
+  grid-row-gap: 24px;
+}
