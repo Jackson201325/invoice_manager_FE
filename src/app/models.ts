@@ -42,21 +42,25 @@ export const invoiceRecord = Record({
 })
 
 export const itemRecord = Record({
-  id: '',
-  name: '',
-  model: '',
-  description: '',
   color: '',
   company: '',
-  year: '',
-  url: '',
-  cost_price: '',
-  sales_price: '',
-  order: 0,
-  total_revenue: 0,
-  invoice_id: 0,
-  total_cost: 0,
-  profit: 0,
   confirm: false,
-  invoice: ''
+  cost_price: '',
+  description: '',
+  id: '',
+  invoice: {},
+  invoice_id: 0,
+  model: '',
+  name: '',
+  order: 0,
+  profit: 0,
+  sales_price: '',
+  total_cost: 0,
+  total_revenue: 0,
+  url: '',
+  year: '',
+  lowerCase() {
+    // console.log(`${this.cost_price}${this.confirm ? 'true' : 'false'}${this.model.trim()}${this.order}${this.url.trim()}`.toLocaleLowerCase())
+    return `${this.cost_price}${this.confirm ? 'true' : 'false'}${this.model}${this.order}${this.url}`.replace(/\s/g, "").toLocaleLowerCase()
+  }
 })

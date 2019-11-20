@@ -13,12 +13,19 @@ import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
 import AccountBalanceIcon from '@material-ui/icons/AccountBalance';
 import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import { invoiceTableStyle } from '../../styles/invoiceTableStyle';
 import './InvoiceTable.scss';
+import { getItems } from '../../redux/Invoice/actions';
 
 const InvoiceTable = props => {
   const classes = invoiceTableStyle();
+  const showInvoice = invoiceId => {
+    props.getItems(invoiceId).then(() => {
+      props.history.push(`/admin/Invoices/${invoiceId}`);
+    });
+  };
   return (
     <div className="invoices">
       {props &&
@@ -46,7 +53,7 @@ const InvoiceTable = props => {
                         value={invoice.total_spend ? invoice.total_spend : '0'}
                         displayType={'text'}
                         thousandSeparator={true}
-                        prefix={'$'}
+                        prefix={'$ '}
                       />
                     </div>
                   </Grid>
@@ -59,7 +66,7 @@ const InvoiceTable = props => {
                         }
                         displayType={'text'}
                         thousandSeparator={true}
-                        prefix={'$'}
+                        prefix={'$ '}
                       />
                     </div>
                   </Grid>
@@ -70,7 +77,7 @@ const InvoiceTable = props => {
                         value={invoice.total_spend ? invoice.total_profit : '0'}
                         displayType={'text'}
                         thousandSeparator={true}
-                        prefix={'$'}
+                        prefix={'$ '}
                       />
                     </div>
                   </Grid>
@@ -84,9 +91,7 @@ const InvoiceTable = props => {
               <Button
                 size="small"
                 color="primary"
-                onClick={() =>
-                  props.history.push(`/admin/Invoices/${invoice.id}`)
-                }
+                onClick={() => showInvoice(invoice.id)}
               >
                 Show Invoice
               </Button>
@@ -97,4 +102,15 @@ const InvoiceTable = props => {
   );
 };
 
-export default withRouter(InvoiceTable);
+const mapStateToProps = state => {
+  return {
+    isLoading: state.invoiceReducer.isLoading
+  };
+};
+
+export default withRouter(
+  connect(
+    mapStateToProps,
+    { getItems }
+  )(InvoiceTable)
+);

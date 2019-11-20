@@ -30,7 +30,6 @@ class Invoices extends Component<IProps, {}> {
   };
 
   componentDidMount() {
-    console.log('ehllo');
     this.props.getInvoices();
   }
 

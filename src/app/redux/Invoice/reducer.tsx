@@ -57,7 +57,7 @@ export default function invoiceReducer(
             day: '2-digit'
           };
           element.created_at = date.toLocaleDateString('en-US', options);
-          console.log(element);
+          // console.log(element);
           return invoiceRecord(element);
         })
       );
@@ -95,7 +95,6 @@ export default function invoiceReducer(
       break;
 
     case actionTypes.GET_ITEMS_SUCCESS:
-      console.log('getITem');
       newState.isLoading = false;
       newState.items = List(action.payload.map(element => itemRecord(element)));
       break;

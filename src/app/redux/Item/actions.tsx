@@ -6,7 +6,7 @@ import { urlResolver } from '../../apiPath/itemApi';
  * End user session, remove data from localStorage
  */
 
-export const createItem = () => dispatch =>
+export const createItem = (invoiceId, body) => dispatch =>
   new Promise((resolve, reject) => {
     dispatch({ type: actionTypes.CREATE_ITEM_START });
     const baseURL = `http://localhost:3000`;
