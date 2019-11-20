@@ -39,6 +39,10 @@ export const invoiceRecord = Record({
   created_at: '',
   updated_at: '',
   items: [],
+  lowerCase() {
+    // console.log(`${this.total_profit}${this.created_at}${this.items.length}${this.total_spend}${this.total_net_sales}`.replace(/\s/g, "").toLocaleLowerCase())
+    return `${this.total_profit}${this.created_at}${this.items.length}${this.total_spend}${this.total_net_sales}`.replace(/\s/g, "").toLocaleLowerCase()
+  }
 })
 
 export const itemRecord = Record({
@@ -61,6 +65,6 @@ export const itemRecord = Record({
   year: '',
   lowerCase() {
     // console.log(`${this.cost_price}${this.confirm ? 'true' : 'false'}${this.model.trim()}${this.order}${this.url.trim()}`.toLocaleLowerCase())
-    return `${this.cost_price}${this.confirm ? 'true' : 'false'}${this.model}${this.order}${this.url}`.replace(/\s/g, "").toLocaleLowerCase()
+    return `${this.cost_price}${this.confirm ? 'true' : 'false'}${this.model}${this.order}${this.url}`.toLocaleLowerCase()
   }
 })

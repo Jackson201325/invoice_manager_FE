@@ -8,6 +8,7 @@ import { createInvoice, getInvoices } from '../redux/Invoice/actions';
 import { CreateInvoice } from '../views/forms/CreateInvoice';
 import InvoiceTable from '../views/tables/InvoiceTable';
 import './invoices.scss';
+import { invoiceRecord } from '../models';
 interface IProps {
   location: any;
   pathname: any;
@@ -18,7 +19,19 @@ interface IProps {
   invoices: any;
 }
 
-class Invoices extends Component<IProps, {}> {
+interface IState {
+  invoices: Array<any>;
+  query: string;
+}
+
+class Invoices extends Component<IProps, IState> {
+  constructor(props) {
+    super(props);
+    this.state = {
+      query: '',
+      invoices: []
+    };
+  }
   createInvoice = () => {
     this.props.createInvoice().then(() => {
       window.location.reload();
@@ -30,10 +43,13 @@ class Invoices extends Component<IProps, {}> {
   };
 
   componentDidMount() {
-    this.props.getInvoices();
+    this.props.getInvoices().then(() => {
+      this.setState({ invoices: this.props.invoices });
+    });
   }
 
   render() {
+    const { invoices } = this.props;
     return (
       <div className="invoice">
         <h1>Invoices</h1>
@@ -42,6 +58,22 @@ class Invoices extends Component<IProps, {}> {
             id="standard-basic"
             className="invoice--input"
             label="Search invoices..."
+            onChange={event => {
+              this.setState(
+                { query: event.target.value.toLocaleLowerCase() },
+                () => {
+                  const matchQuery = invoice => {
+                    // console.log('this is state: ', this.state.query);
+                    return invoiceRecord(invoice)
+                      .lowerCase()
+                      .includes(this.state.query);
+                  };
+
+                  const invoicesResult = invoices.filter(matchQuery);
+                  this.setState({ invoices: invoicesResult });
+                }
+              );
+            }}
           />
           <CreateInvoice
             classname="create--invoice"
@@ -49,7 +81,7 @@ class Invoices extends Component<IProps, {}> {
           />
         </div>
         {!this.props.isLoading && this.props.invoices.size > 0 && (
-          <InvoiceTable invoices={this.props.invoices} />
+          <InvoiceTable invoices={this.state.invoices} />
         )}
       </div>
     );
