@@ -23,6 +23,7 @@ const InvoiceTable = props => {
   const classes = invoiceTableStyle();
   const showInvoice = invoiceId => {
     props.getItems(invoiceId).then(() => {
+      console.log(invoiceId);
       props.history.push(`/admin/Invoices/${invoiceId}`);
     });
   };

@@ -42,6 +42,7 @@ class Invoice extends Component<IProps, IState> {
   }
 
   id = this.props.match.params.id;
+
   componentDidMount() {
     this.props.getInvoice(this.id).then(() => {
       this.props.getItems(this.id).then(() => {

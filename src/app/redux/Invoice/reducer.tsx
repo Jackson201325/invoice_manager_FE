@@ -31,9 +31,10 @@ export default function invoiceReducer(
 
     case actionTypes.CREATE_INVOICE_SUCCESS:
       newState.isLoading = false;
-      newState.invoices = List(
-        action.payload.map(element => invoiceRecord(element))
-      );
+      console.log(action.payload);
+      // newState.invoices = List(
+      //   action.payload.map(element => invoiceRecord(element))
+      // );
       break;
 
     case actionTypes.CREATE_INVOICE_FAIL:
